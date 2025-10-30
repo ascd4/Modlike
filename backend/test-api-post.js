@@ -4,7 +4,7 @@ const FormData = require("form-data");
 const fs = require("fs");
 
 // ตัวอย่าง token (ใส่ token จริงของผู้ใช้ที่ authenticate แล้ว)
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhdmF2ZW5zQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzYxODE4MzgwLCJleHAiOjE3NjE5MDQ3ODB9.VZv3uOP-jhc6_XM9jm6Ih_Txch5VCODArkf94lhcgSM";
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhdmF2ZW5zQGdtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzYxODM0NzcyLCJleHAiOjE3NjE5MjExNzJ9.LkcnbObnSFPMNsnmaAvFjUyu4AhqYM0MFhq-ozVV_FI";
 
 // ฟังก์ชันทดสอบการยิง API POST
 async function testCreateEvent() {
@@ -19,11 +19,12 @@ async function testCreateEvent() {
     form.append("maxParticipant", 50);
     form.append("maxStaff", 10);
     form.append("eventInfo", "This is a test event created via test script");
-    form.append("status", "Draft");
+    form.append("status", "Pending");
 
     // ถ้ามีรูปทดสอบ
-    if (fs.existsSync("./test.jpg")) {
-      form.append("image", fs.createReadStream("./test.jpg"));
+    // *** แก้เป็น path ของรูปที่ต้องการทดสอบ ***
+    if (fs.existsSync("pikuk.png")) {
+      form.append("image", fs.createReadStream("pikuk.png"));
     }
 
     // ส่ง request ไปยัง API

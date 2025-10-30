@@ -10,6 +10,14 @@ const { errorHandler } = require("./utils/errorHandler");
 const routes = require("./routes");
 const jwt = require("jsonwebtoken");
 
+const fs = require('fs');
+const uploadDir = 'uploads/';
+
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir);
+    console.log(`✓ Created upload directory: ${uploadDir}`);
+}
+
 dotenv.config();
 const app = express();
 

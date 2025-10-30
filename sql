@@ -31,3 +31,10 @@ CREATE TABLE event (
 
 SELECT * FROM users;
 SHOW TABLES;
+
+
+
+--change image path to text
+
+ALTER TABLE event
+MODIFY ImagePath TEXT;
