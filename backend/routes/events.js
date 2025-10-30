@@ -47,14 +47,14 @@ router.post("/create", authenticateJWT, upload.single("image"), async (req, res)
   }
 });
 
-// --- GET MY EVENTS (Draft / Pending / Approved) ---
+// --- GET MY EVENTS (Draft / Pending / Approved / Rejected) ---
 router.get("/my", authenticateJWT, async (req, res) => {
   try {
     const db = await connectDB();
     const userId = req.user.id;
 
     const [events] = await db.query(
-      "SELECT * FROM event WHERE EventOrgID = ? AND Status IN ('Draft','Pending','Approved')",
+      "SELECT * FROM event WHERE EventOrgID = ? AND Status IN ('Draft','Pending','Approved','Rejected')",
       [userId]
     ); 
 
